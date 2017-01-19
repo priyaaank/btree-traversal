@@ -12,31 +12,18 @@ public class TreeNode<T extends Comparable> {
 
     public void insert(T value) {
         TreeNode<T> newTreeNode = new TreeNode<>(value);
-        if (value.compareTo(this.value) > 0) {
-            if (this.right != null && this.right.isSet()) {
-                this.right.insert(value);
-            } else {
-                this.right = newTreeNode;
-            }
-        } else {
-            if (this.left != null && this.left.isSet()) {
-                this.left.insert(value);
-            } else {
-                this.left = newTreeNode;
-            }
-        }
+        if(value.compareTo(this.value) > 0) addToRight(value, newTreeNode);
+        else addToLeft(value, newTreeNode);
     }
 
-    private boolean isSet() {
-        return this.value != null;
+    private void addToLeft(T value, TreeNode<T> newTreeNode) {
+        if (this.left == null) this.left = newTreeNode;
+        else this.left.insert(value);
     }
 
-    public TreeNode<T> rightNode() {
-        return right;
-    }
-
-    public TreeNode<T> leftNode() {
-        return this.left;
+    private void addToRight(T value, TreeNode<T> newTreeNode) {
+        if(this.right == null) this.right = newTreeNode;
+        else this.right.insert(value);
     }
 
     public void traverse(TraversalStrategy<T> preOrderTraversalStrategy) {
