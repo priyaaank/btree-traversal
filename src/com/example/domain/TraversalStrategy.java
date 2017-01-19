@@ -11,7 +11,7 @@ public abstract class TraversalStrategy<T extends Comparable> {
         return values;
     }
 
-    public abstract void visit(T value, TreeNode<T> leftNode, TreeNode<T> rightNode);
+    public abstract void visit(final T value, final TreeNode<T> leftNode, final TreeNode<T> rightNode);
 
     @Override
     public String toString() {

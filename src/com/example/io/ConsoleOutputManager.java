@@ -19,7 +19,7 @@ public class ConsoleOutputManager implements OutputManager, Constants.IOConstant
     }
 
     @Override
-    public String ask(String question, String... restrictedOptions) {
+    public String ask(final String question, final String... restrictedOptions) {
         this.printer.println(question);
         String input = null;
         while (!isValidInput(restrictedOptions, input)) {
@@ -29,11 +29,11 @@ public class ConsoleOutputManager implements OutputManager, Constants.IOConstant
     }
 
     @Override
-    public void show(String text) {
+    public void show(final String text) {
         this.printer.println(text);
     }
 
-    private String getResponse(String[] restrictedOptions) {
+    private String getResponse(final String[] restrictedOptions) {
         String input;
         if (restrictedOptions.length > 0) {
             this.printer.println(String.format(POSSIBLE_OPTIONS, printableOptions(restrictedOptions)));
@@ -42,7 +42,7 @@ public class ConsoleOutputManager implements OutputManager, Constants.IOConstant
         return input;
     }
 
-    private String printableOptions(String[] restrictedOptions) {
+    private String printableOptions(final String[] restrictedOptions) {
         StringBuffer options = new StringBuffer("");
         for (String option : restrictedOptions) {
             options.append(option);
@@ -52,7 +52,7 @@ public class ConsoleOutputManager implements OutputManager, Constants.IOConstant
         return options.substring(0, endIndex);
     }
 
-    private boolean isValidInput(String[] restrictedOptions, String input) {
+    private boolean isValidInput(final String[] restrictedOptions, String input) {
         if (input == null || input.trim().length() == 0) return false;
         if (restrictedOptions == null || restrictedOptions.length == 0) return true;
         for (String options : restrictedOptions) {

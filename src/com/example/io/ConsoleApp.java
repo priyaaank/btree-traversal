@@ -57,7 +57,7 @@ public class ConsoleApp implements Constants.IOConstants {
         rootNode.traverse(traversalStrategy);
     }
 
-    private void populateTree(String value) {
+    private void populateTree(final String value) {
         Integer val = Integer.parseInt(value.trim());
         if (rootNode == null) {
             rootNode = new TreeNode<>(val);
