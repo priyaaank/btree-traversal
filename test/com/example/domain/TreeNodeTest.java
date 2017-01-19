@@ -20,25 +20,40 @@ public class TreeNodeTest {
     }
 
     @Test
+    public void testSmallerValueIsPushedAsLeftChild() {
+        rootNode.insert("ALeftNode");
+
+        assertEquals("[Value] ALeftNode", rootNode.leftNode().toString());
+    }
+
+    @Test
+    public void testValueIsPushedToLeftSubtreeIfChildAlreadyOccupied() throws Exception {
+        rootNode.insert("BLeftNode");
+        rootNode.insert("ALeftNode");
+
+        assertEquals("[Value] BLeftNode", rootNode.leftNode().toString());
+        assertEquals("[Value] ALeftNode", rootNode.leftNode().leftNode().toString());
+    }
+
+    @Test
+    public void testBiggerValueIsPushedAsRightChild() throws Exception {
+        rootNode.insert("zRightNode");
+
+        assertEquals("[Value] zRightNode", rootNode.rightNode().toString());
+    }
+
+    @Test
+    public void testEqualValueIsPushedToLeftChild() throws Exception {
+        rootNode.insert("Root value");
+
+        assertEquals("[Value] Root value", rootNode.leftNode().toString());
+    }
+
+    @Test
     public void testNodeStringRepresentationPrintsNodeValueForNumericValues() {
         TreeNode<Integer> rootNode = new TreeNode<>(28);
 
         assertEquals("[Value] 28", rootNode.toString());
     }
 
-    @Test
-    public void testRightNodeCanBeRetrieved() throws Exception {
-        TreeNode<String> rightNode = new TreeNode<>("Right node");
-        rootNode.setRight(rightNode);
-
-        assertEquals(rightNode, rootNode.rightNode());
-    }
-
-    @Test
-    public void testThatLeftNodeCanBeRetrieved() throws Exception {
-        TreeNode<String> leftNode = new TreeNode<>("Right node");
-        rootNode.setLeft(leftNode);
-
-        assertEquals(leftNode, rootNode.leftNode());
-    }
 }

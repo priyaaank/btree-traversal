@@ -1,6 +1,6 @@
 package com.example.domain;
 
-public class TreeNode<T> {
+public class TreeNode<T extends Comparable> {
 
     private T value;
     private TreeNode<T> right;
@@ -10,12 +10,25 @@ public class TreeNode<T> {
         this.value = value;
     }
 
-    public void setRight(final TreeNode<T> right) {
-        this.right = right;
+    public void insert(T value) {
+        TreeNode<T> newTreeNode = new TreeNode<>(value);
+        if (value.compareTo(this.value) > 0) {
+            if (this.right != null && this.right.isSet()) {
+                this.right.insert(value);
+            } else {
+                this.right = newTreeNode;
+            }
+        } else {
+            if (this.left != null && this.left.isSet()) {
+                this.left.insert(value);
+            } else {
+                this.left = newTreeNode;
+            }
+        }
     }
 
-    public void setLeft(final TreeNode<T> left) {
-        this.left = left;
+    private boolean isSet() {
+        return this.value != null;
     }
 
     public TreeNode<T> rightNode() {
@@ -26,8 +39,13 @@ public class TreeNode<T> {
         return this.left;
     }
 
+    public void traverse(TraversalStrategy<T> preOrderTraversalStrategy) {
+        preOrderTraversalStrategy.visit(this.value, this.left, this.right);
+    }
+
     @Override
     public String toString() {
         return String.format("[Value] %s", this.value);
     }
+
 }
