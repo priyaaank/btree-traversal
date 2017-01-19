@@ -67,8 +67,7 @@ public class ConsoleApp implements Constants.IOConstants {
     }
 
     public static void main(String[] args) {
-        ConsoleOutputManager consoleOutputManager = new ConsoleOutputManager(new ConsoleInputManager());
-        ConsoleApp bTreeConsole = new ConsoleApp(consoleOutputManager);
+        ConsoleApp bTreeConsole = new ConsoleApp(new ConsoleOutputManager());
         bTreeConsole.run();
     }
 

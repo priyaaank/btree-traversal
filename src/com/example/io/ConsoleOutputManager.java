@@ -9,8 +9,12 @@ public class ConsoleOutputManager implements OutputManager, Constants.IOConstant
     private final ConsoleInputManager inputManager;
     private PrintStream printer;
 
-    public ConsoleOutputManager(ConsoleInputManager inputManager) {
-        this.printer = System.out;
+    public ConsoleOutputManager() {
+        this(System.out, new ConsoleInputManager());
+    }
+
+    public ConsoleOutputManager(PrintStream printStream, ConsoleInputManager inputManager) {
+        this.printer = printStream;
         this.inputManager = inputManager;
     }
 

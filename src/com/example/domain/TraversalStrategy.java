@@ -18,7 +18,7 @@ public abstract class TraversalStrategy<T extends Comparable> {
         if (values == null || values.size() == 0) return "No values!";
         StringBuffer toStr = new StringBuffer();
         for (T val : values) toStr.append(val.toString()).append("-");
-        int endIndex = toStr.length() >= 2 ? toStr.length() - 2 : 0;
+        int endIndex = toStr.length() >= 2 ? toStr.length() - 1 : 0;
         return toStr.substring(0, endIndex);
     }
 }

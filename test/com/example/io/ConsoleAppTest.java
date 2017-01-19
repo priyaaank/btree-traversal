@@ -23,7 +23,7 @@ public class ConsoleAppTest {
         this.consoleApp.run();
 
         verify(outputManager).show("The output for selected traversal is:");
-        verify(outputManager).show("20-50-60-100-145-150-16");
+        verify(outputManager).show("20-50-60-100-145-150-160");
     }
 
     @Test
@@ -35,6 +35,6 @@ public class ConsoleAppTest {
 
         verify(outputManager).show("Skipping input AA. It doesn't look like an integer.");
         verify(outputManager).show("The output for selected traversal is:");
-        verify(outputManager).show( "20-50-60-145-150-16");
+        verify(outputManager).show( "20-50-60-145-150-160");
     }
 }

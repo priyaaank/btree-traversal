@@ -65,12 +65,7 @@ public class PreOrderTraversalStrategyTest {
     public void testTheOutputSequenceOfAllValues() throws Exception {
         this.rootNode.traverse(this.preOrderTraversalStrategy);
         List<Integer> values = this.preOrderTraversalStrategy.traversalOutput();
-        StringBuffer valAsString = new StringBuffer("");
-        for(Integer val : values) {
-            valAsString.append(val.toString());
-            valAsString.append("-");
-        }
 
-        assertEquals("100-50-20-60-150-145-160-", valAsString.toString());
+        assertEquals("100-50-20-60-150-145-160", this.preOrderTraversalStrategy.toString());
     }
 }

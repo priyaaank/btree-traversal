@@ -7,7 +7,11 @@ public class ConsoleInputManager implements InputManager {
     private final Scanner reader;
 
     public ConsoleInputManager() {
-        this.reader = new Scanner(System.in);
+        this(new Scanner(System.in));
+    }
+
+    public ConsoleInputManager(Scanner reader) {
+        this.reader = reader;
     }
 
     @Override
