@@ -13,4 +13,12 @@ public abstract class TraversalStrategy<T extends Comparable> {
 
     public abstract void visit(T value, TreeNode<T> leftNode, TreeNode<T> rightNode);
 
+    @Override
+    public String toString() {
+        if (values == null || values.size() == 0) return "No values!";
+        StringBuffer toStr = new StringBuffer();
+        for (T val : values) toStr.append(val.toString()).append("-");
+        int endIndex = toStr.length() >= 2 ? toStr.length() - 2 : 0;
+        return toStr.substring(0, endIndex);
+    }
 }
