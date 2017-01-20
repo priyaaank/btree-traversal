@@ -65,7 +65,6 @@ public class InOrderTraversalStrategyTest {
     public void testTheOutputSequenceOfAllValues() throws Exception {
         this.rootNode.traverse(this.inOrderTraversalStrategy);
         List<Integer> values = this.inOrderTraversalStrategy.traversalOutput();
-        StringBuffer valAsString = new StringBuffer("");
 
         assertEquals("20-50-60-100-145-150-160", this.inOrderTraversalStrategy.toString());
     }
