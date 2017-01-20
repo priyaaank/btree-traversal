@@ -1,7 +1,7 @@
 package com.example;
 
 import com.example.builder.ConsoleTreeBuilder;
-import com.example.io.ConsoleIO;
+import com.example.io.ConsoleInterface;
 import com.example.io.IOInterface;
 import com.example.support.TypeConverter;
 
@@ -30,7 +30,7 @@ public class ConsoleApp {
     }
 
     public static void main(String[] args) {
-        new ConsoleApp(new ConsoleIO()).run();
+        new ConsoleApp(new ConsoleInterface()).run();
     }
 
 }

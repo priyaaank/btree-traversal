@@ -3,20 +3,20 @@ package com.example.io;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class ConsoleIO implements IOInterface {
+public class ConsoleInterface implements IOInterface {
 
     private PrintStream printStream;
     private Scanner reader;
 
-    public ConsoleIO() {
+    public ConsoleInterface() {
         this(System.out, new Scanner(System.in));
     }
 
-    public ConsoleIO(PrintStream printStream) {
+    public ConsoleInterface(PrintStream printStream) {
         this(printStream, new Scanner(System.in));
     }
 
-    public ConsoleIO(PrintStream printStream, Scanner reader) {
+    public ConsoleInterface(PrintStream printStream, Scanner reader) {
         this.printStream = printStream;
         this.reader = reader;
     }

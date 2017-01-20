@@ -23,12 +23,12 @@ public class ConsoleAppTest {
     @Before
     public void setUp() throws Exception {
         this.consoleApp = new ConsoleApp(ioInterface);
-        when(ioInterface.ask(eq(INPUT_ENTER_TREE_DATA), anyObject(), eq(ERROR_INVALID_INPUT))).thenReturn("10,50,1,22");
         when(ioInterface.ask(eq(INPUT_TRAVERSAL_TYPE), anyObject(), eq(ERROR_INVALID_TRAVERSAL))).thenReturn("PO");
     }
 
     @Test
-    public void testThatConsoleAppExecutesTreeTraversal() throws Exception {
+    public void testThatConsoleAppExecutesTreeTraversalForCorrectInput() throws Exception {
+        when(ioInterface.ask(eq(INPUT_ENTER_TREE_DATA), anyObject(), eq(ERROR_INVALID_INPUT))).thenReturn("10,50,1,22");
         this.consoleApp.run();
 
         verify(ioInterface).show(OUTPUT_FINAL_LIST);
@@ -37,4 +37,5 @@ public class ConsoleAppTest {
         verify(ioInterface).show("50");
         verify(ioInterface).show("10");
     }
+
 }

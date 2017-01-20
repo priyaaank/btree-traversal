@@ -7,6 +7,7 @@ import com.example.support.TypeConverter;
 import java.util.*;
 
 import static com.example.support.Constants.IOMessages.*;
+import static com.example.support.Constants.TraversalAbbrs.*;
 
 public class ConsoleTreeBuilder<T extends Comparable> implements TreeBuilder<T> {
 
@@ -15,9 +16,9 @@ public class ConsoleTreeBuilder<T extends Comparable> implements TreeBuilder<T> 
     private TypeConverter<T> converter;
     private Map<String, Traverser<T>> traverserMap = new HashMap<String, Traverser<T>>() {
         {
-            put("PR", new PreOrderTraverser<>());
-            put("PO", new PostOrderTraverser<>());
-            put("IN", new InOrderTraverser<>());
+            put(PR, new PreOrderTraverser<>());
+            put(PO, new PostOrderTraverser<>());
+            put(IN, new InOrderTraverser<>());
         }
     };
 

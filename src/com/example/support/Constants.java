@@ -2,6 +2,14 @@ package com.example.support;
 
 public class Constants {
 
+    public interface TraversalAbbrs {
+
+        String PO = "PO";
+        String PR = "PR";
+        String IN = "IN";
+
+    }
+
     public interface IOMessages {
 
         String INPUT_ENTER_TREE_DATA = "Enter values for the tree comma separated:";

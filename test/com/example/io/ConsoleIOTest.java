@@ -17,11 +17,11 @@ public class ConsoleIOTest {
     private PrintStream printStream;
     @Mock
     private IOInterface.InputValidator validator;
-    private ConsoleIO consoleInterface;
+    private ConsoleInterface consoleInterface;
 
     @Before
     public void setUp() throws Exception {
-        this.consoleInterface = new ConsoleIO(printStream);
+        this.consoleInterface = new ConsoleInterface(printStream);
     }
 
     @Test
