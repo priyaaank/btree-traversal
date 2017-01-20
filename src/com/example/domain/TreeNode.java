@@ -1,6 +1,11 @@
 package com.example.domain;
 
-public class TreeNode<T extends Comparable> {
+import com.example.support.Constants;
+import com.example.support.LogFactory;
+
+import java.util.logging.Level;
+
+public class TreeNode<T extends Comparable> implements Constants.LogMessages {
 
     private T value;
     private TreeNode<T> right;
@@ -11,8 +16,9 @@ public class TreeNode<T extends Comparable> {
     }
 
     public void insert(final T value) {
+        LogFactory.getLoggerInstance().log(Level.INFO, String.format(INFO_INSERTING_INTO_TREE, value));
         TreeNode<T> newTreeNode = new TreeNode<>(value);
-        if(value.compareTo(this.value) > 0) addToRight(value, newTreeNode);
+        if (value.compareTo(this.value) > 0) addToRight(value, newTreeNode);
         else addToLeft(value, newTreeNode);
     }
 
@@ -22,7 +28,7 @@ public class TreeNode<T extends Comparable> {
     }
 
     private void addToRight(final T value, final TreeNode<T> newTreeNode) {
-        if(this.right == null) this.right = newTreeNode;
+        if (this.right == null) this.right = newTreeNode;
         else this.right.insert(value);
     }
 

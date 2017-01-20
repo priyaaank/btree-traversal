@@ -2,10 +2,14 @@ package com.example.wizard;
 
 import com.example.domain.TraversalStrategy;
 import com.example.io.OutputManager;
+import com.example.support.Constants;
+import com.example.support.LogFactory;
+
+import java.util.logging.Level;
 
 import static com.example.support.Constants.IOConstants.FINAL_OUTPUT_PROMPT;
 
-public class ShowOutputStep implements WizardStep {
+public class ShowOutputStep implements WizardStep, Constants.LogMessages {
     private final OutputManager outputManager;
     private final TraversalStrategy<Integer> traversalStrategy;
     private Boolean executedOnce = Boolean.FALSE;
@@ -29,6 +33,7 @@ public class ShowOutputStep implements WizardStep {
 
     @Override
     public WizardStep nextStep() {
+        LogFactory.getLoggerInstance().log(Level.INFO, INFO_LAST_STEP_EXECUTED);
         return null;
     }
 }

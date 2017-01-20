@@ -6,15 +6,17 @@ import com.example.domain.PreOrderTraversalStrategy;
 import com.example.domain.TraversalStrategy;
 import com.example.io.OutputManager;
 import com.example.support.Constants;
+import com.example.support.LogFactory;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 import static com.example.support.Constants.IOConstants.*;
 
-public class CaptureTraversalTypeStep implements WizardStep, Constants.Defaults {
+public class CaptureTraversalTypeStep implements WizardStep, Constants.Defaults, Constants.LogMessages {
     private OutputManager outputManager;
     private List<Integer> capturedValues;
     private TraversalStrategy<Integer> traversalStrategy;
@@ -34,11 +36,18 @@ public class CaptureTraversalTypeStep implements WizardStep, Constants.Defaults 
 
     @Override
     public void execute() {
-        if(error != null && error.length() > 0) this.outputManager.show(error);
+        if (error != null && error.length() > 0) this.outputManager.show(error);
         error = EMPTY_STRING;
         String traversalType = this.outputManager.ask(TRAVERSAL_OPTIONS, IN, PO, PR);
         assignTraversalStrategy(traversalType);
-        if(traversalStrategy == null) error =TRAVERSAL_OPTION_INCORRECT;
+        setErrorIfApplicable();
+    }
+
+    private void setErrorIfApplicable() {
+        if (traversalStrategy == null) {
+            LogFactory.getLoggerInstance().log(Level.SEVERE, ERROR_INCORRECT_TRAVERSAL_OPTION);
+            error = TRAVERSAL_OPTION_INCORRECT;
+        }
     }
 
     @Override
@@ -48,13 +57,14 @@ public class CaptureTraversalTypeStep implements WizardStep, Constants.Defaults 
 
     @Override
     public WizardStep nextStep() {
+        LogFactory.getLoggerInstance().log(Level.INFO, INFO_NEXT_STEP_TRAVERSE_TREE);
         return new BuildAndTraverseStep(this.outputManager, this.capturedValues, this.traversalStrategy);
     }
 
     private void assignTraversalStrategy(String traversalType) {
         Iterator<String> traversalTypeItr = traversalMap.keySet().iterator();
-        while(traversalTypeItr.hasNext()) {
-            if(traversalTypeItr.next().equalsIgnoreCase(traversalType)) {
+        while (traversalTypeItr.hasNext()) {
+            if (traversalTypeItr.next().equalsIgnoreCase(traversalType)) {
                 this.traversalStrategy = traversalMap.get(traversalType.toUpperCase());
             }
         }

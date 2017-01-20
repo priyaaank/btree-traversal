@@ -1,10 +1,12 @@
 package com.example.io;
 
 import com.example.support.Constants;
+import com.example.support.LogFactory;
 
 import java.io.PrintStream;
+import java.util.logging.Level;
 
-public class ConsoleOutputManager implements OutputManager, Constants.IOConstants {
+public class ConsoleOutputManager implements OutputManager, Constants.IOConstants, Constants.LogMessages {
 
     private final ConsoleInputManager inputManager;
     private PrintStream printer;
@@ -58,6 +60,7 @@ public class ConsoleOutputManager implements OutputManager, Constants.IOConstant
         for (String options : restrictedOptions) {
             if (options.toLowerCase().equals(input.trim().toLowerCase())) return true;
         }
+        LogFactory.getLoggerInstance().log(Level.SEVERE, ERROR_INPUT_VALUE_INVALID);
         return false;
     }
 }

@@ -2,14 +2,16 @@ package com.example.wizard;
 
 import com.example.io.OutputManager;
 import com.example.support.Constants;
+import com.example.support.LogFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import static com.example.support.Constants.IOConstants.COMMA_SEPARATED_VALUE_PROMPT;
 import static com.example.support.Constants.IOConstants.SKIP_ERROR_PROMPT;
 
-public class CaptureInputStep implements WizardStep, Constants.Defaults {
+public class CaptureInputStep implements WizardStep, Constants.Defaults, Constants.LogMessages {
 
     private final OutputManager outputManager;
     private String[] capturedStringValues;
@@ -37,6 +39,7 @@ public class CaptureInputStep implements WizardStep, Constants.Defaults {
 
     @Override
     public WizardStep nextStep() {
+        LogFactory.getLoggerInstance().log(Level.INFO, INFO_NEXT_STEP_CAPTURE_TRAVERSAL_TYPE);
         return new CaptureTraversalTypeStep(this.outputManager, this.capturedValuesAsInt);
     }
 
@@ -44,6 +47,7 @@ public class CaptureInputStep implements WizardStep, Constants.Defaults {
         try {
             capturedValuesAsInt.add(Integer.parseInt(value.trim()));
         } catch (NumberFormatException nfe) {
+            LogFactory.getLoggerInstance().log(Level.SEVERE, String.format(ERROR_INVALID_INPUT, value));
             this.error += String.format(SKIP_ERROR_PROMPT, value);
         }
     }
