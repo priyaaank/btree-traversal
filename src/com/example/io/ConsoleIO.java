@@ -12,6 +12,10 @@ public class ConsoleIO implements IOInterface {
         this(System.out, new Scanner(System.in));
     }
 
+    public ConsoleIO(PrintStream printStream) {
+        this(printStream, new Scanner(System.in));
+    }
+
     public ConsoleIO(PrintStream printStream, Scanner reader) {
         this.printStream = printStream;
         this.reader = reader;
