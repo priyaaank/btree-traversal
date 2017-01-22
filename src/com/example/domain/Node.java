@@ -1,33 +1,28 @@
 package com.example.domain;
 
-public class Node<T extends Comparable> {
+public class Node<T extends Comparable> implements Comparable<Node<T>> {
 
     private Node<T> right;
     private Node<T> left;
     private T data;
 
-    public void insert(T value) {
-        if (this.data == null) this.data = value;
-        else insertInSubtree(value);
+    public Node(T value) {
+        this.data = value;
     }
 
-    private void insertInSubtree(T value) {
-        if (value.compareTo(this.data) > 0) inRightSubtree(value);
-        else inLeftSubtree(value);
+    public void insert(Node<T> newNode) {
+        if (this.compareTo(newNode) < 0) inRightSubtree(newNode);
+        else inLeftSubTree(newNode);
     }
 
-    private void inLeftSubtree(T value) {
-        if (left == null) left = new Node<>();
-        left.insert(value);
+    private void inLeftSubTree(Node<T> newNode) {
+        if (this.left == null) this.left = newNode;
+        else this.left.insert(newNode);
     }
 
-    private void inRightSubtree(T value) {
-        if (right == null) right = new Node<>();
-        right.insert(value);
-    }
-
-    boolean isPopulated() {
-        return this.data != null;
+    private void inRightSubtree(Node<T> newNode) {
+        if (this.right == null) this.right = newNode;
+        else this.right.insert(newNode);
     }
 
     Node<T> getLeft() {
@@ -40,5 +35,11 @@ public class Node<T extends Comparable> {
 
     public T getData() {
         return data;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public int compareTo(Node<T> o) {
+        return (this.data).compareTo(o.data);
     }
 }

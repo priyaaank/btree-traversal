@@ -11,7 +11,7 @@ import static com.example.support.Constants.TraversalAbbrs.*;
 
 public class ConsoleTreeBuilder<T extends Comparable> implements TreeBuilder<T> {
 
-    private Node<T> rootNode = new Node<T>();
+    private Node<T> rootNode;
     private IOInterface ioInterface;
     private TypeConverter<T> converter;
     private Map<String, Traverser<T>> traverserMap = new HashMap<String, Traverser<T>>() {
@@ -42,20 +42,19 @@ public class ConsoleTreeBuilder<T extends Comparable> implements TreeBuilder<T> 
     @Override
     public void buildAndTraverse(List<T> values, Traverser<T> traversalStrategy) {
         for (T value : values) {
-            rootNode.insert(value);
+            Node<T> newNode = new Node<>(value);
+            if (rootNode == null) rootNode = newNode;
+            else rootNode.insert(newNode);
         }
         traversalStrategy.traverse(rootNode, getSuccessCallback());
     }
 
     @Override
-    public void processResult(List<Node<T>> nodes) {
-        this.ioInterface.show(OUTPUT_FINAL_LIST);
-        for (Node<T> node : nodes) {
-            this.ioInterface.show(node.getData().toString());
-        }
+    public void processResult(Node<T> node) {
+        this.ioInterface.show(node.getData().toString());
     }
 
-    private Traverser.Callback<T> getSuccessCallback() {
+    private Traverser.Visit<Node<T>> getSuccessCallback() {
         return this::processResult;
     }
 

@@ -13,6 +13,6 @@ public interface TreeBuilder<T extends Comparable> {
 
     void buildAndTraverse(List<T> values, Traverser<T> traversalStrategy);
 
-    void processResult(List<Node<T>> nodes);
+    void processResult(Node<T> nodes);
 
 }

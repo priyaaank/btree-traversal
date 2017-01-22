@@ -3,6 +3,8 @@ package com.example.domain;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -22,27 +24,27 @@ public class PreOrderTraverserTest {
 
      */
 
-    private Node<Integer> rootNode = new Node<>();
+    private Node<Integer> rootNode;
     private Traverser<Integer> traverser;
 
     @Before
     public void setUp() throws Exception {
-        rootNode.insert(100);
-        rootNode.insert(50);
-        rootNode.insert(150);
-        rootNode.insert(20);
-        rootNode.insert(60);
-        rootNode.insert(145);
-        rootNode.insert(160);
+        rootNode = new Node<>(100);
+        for (Integer value : Arrays.asList(50, 150, 20, 60, 145, 160)) {
+            rootNode.insert(new Node<>(value));
+        }
         this.traverser = new PreOrderTraverser<>();
     }
 
     @Test
     public void testThatNodesAreReturnedInPreOrder() throws Exception {
-        this.traverser.traverse(rootNode, selectedNodes -> {
-            String value = getNodeSequenceAsStr(selectedNodes);
-            assertEquals("100-50-20-60-150-145-160", value);
+        List<Node<Integer>> returnedNodes = new ArrayList<>();
+        this.traverser.traverse(rootNode, visitedNode -> {
+            returnedNodes.add(visitedNode);
         });
+        String value = getNodeSequenceAsStr(returnedNodes);
+
+        assertEquals("100-50-20-60-150-145-160", value);
     }
 
     private String getNodeSequenceAsStr(List<Node<Integer>> selectedNodes) {
