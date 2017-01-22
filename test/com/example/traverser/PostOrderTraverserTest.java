@@ -39,9 +39,7 @@ public class PostOrderTraverserTest {
     @Test
     public void testThatNodesAreReturnedInPostOrder() throws Exception {
         List<Node<Integer>> returnedNodes = new ArrayList<>();
-        this.traverser.traverse(rootNode, visitedNode -> {
-            returnedNodes.add(visitedNode);
-        });
+        this.traverser.traverse(rootNode, returnedNodes::add);
         String value = getNodeSequenceAsStr(returnedNodes);
 
         assertEquals("20-60-50-145-160-150-100", value);

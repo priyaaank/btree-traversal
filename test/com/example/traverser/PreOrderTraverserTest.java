@@ -39,9 +39,7 @@ public class PreOrderTraverserTest {
     @Test
     public void testThatNodesAreReturnedInPreOrder() throws Exception {
         List<Node<Integer>> returnedNodes = new ArrayList<>();
-        this.traverser.traverse(rootNode, visitedNode -> {
-            returnedNodes.add(visitedNode);
-        });
+        this.traverser.traverse(rootNode, returnedNodes::add);
         String value = getNodeSequenceAsStr(returnedNodes);
 
         assertEquals("100-50-20-60-150-145-160", value);

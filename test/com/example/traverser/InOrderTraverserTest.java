@@ -39,9 +39,7 @@ public class InOrderTraverserTest {
     @Test
     public void testThatNodesAreReturnedInInOrder() throws Exception {
         List<Node<Integer>> returnedNodes = new ArrayList<>();
-        this.traverser.traverse(rootNode, visitedNode -> {
-            returnedNodes.add(visitedNode);
-        });
+        this.traverser.traverse(rootNode, returnedNodes::add);
         String value = getNodeSequenceAsStr(returnedNodes);
 
         assertEquals("20-50-60-100-145-150-160", value);
