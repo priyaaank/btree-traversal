@@ -48,7 +48,7 @@ public class PreOrderTraverserTest {
     private String getNodeSequenceAsStr(List<Node<Integer>> selectedNodes) {
         StringBuffer value = new StringBuffer("");
         for(Node node :selectedNodes) {
-            value.append(node.getData()).append("-");
+            value.append(node.toString()).append("-");
         }
         return value.substring(0, value.length()-1);
     }

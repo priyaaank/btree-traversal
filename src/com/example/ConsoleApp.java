@@ -25,7 +25,7 @@ public class ConsoleApp {
     public void run() {
         try {
             Node<Integer> rootNode = new YAMLTreeBuilder(new FileReader(this.inputFile)).buildTree();
-            TraverserFactory.<Integer>inOrder().traverse(rootNode, visitedNode -> printStream.println(visitedNode.getData()));
+            TraverserFactory.<Integer>inOrder().traverse(rootNode, visitedNode -> printStream.println(visitedNode.toString()));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

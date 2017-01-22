@@ -38,10 +38,6 @@ public class Node<T extends Comparable> implements Comparable<Node<T>> {
         return right;
     }
 
-    public T getData() {
-        return data;
-    }
-
     @Override
     public int compareTo(Node<T> o) {
         return (this.data).compareTo(o.data);
