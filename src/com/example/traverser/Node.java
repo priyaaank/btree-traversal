@@ -15,6 +15,14 @@ public class Node<T extends Comparable> implements Comparable<Node<T>> {
         else inLeftSubTree(newNode);
     }
 
+    Node<T> getLeft() {
+        return left;
+    }
+
+    Node<T> getRight() {
+        return right;
+    }
+
     private void inLeftSubTree(Node<T> newNode) {
         if (this.left == null) this.left = newNode;
         else this.left.insert(newNode);
@@ -25,17 +33,9 @@ public class Node<T extends Comparable> implements Comparable<Node<T>> {
         else this.right.insert(newNode);
     }
 
-    Node<T> getLeft() {
-        return left;
-    }
-
     @Override
     public String toString() {
         return this.data.toString();
-    }
-
-    Node<T> getRight() {
-        return right;
     }
 
     @Override
