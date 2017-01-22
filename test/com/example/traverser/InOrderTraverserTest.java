@@ -1,4 +1,4 @@
-package com.example.domain;
+package com.example.traverser;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class PostOrderTraverserTest {
+public class InOrderTraverserTest {
 
     /*
                              100
@@ -20,7 +20,7 @@ public class PostOrderTraverserTest {
                         /   \    /   \
                        20   60  145  160
 
-          Expected Output: 20 - 60 - 50 - 145 - 160 - 150 - 100
+          Expected Output: 20 - 50 - 60 - 100 - 145 - 150 - 160
 
      */
 
@@ -30,21 +30,21 @@ public class PostOrderTraverserTest {
     @Before
     public void setUp() throws Exception {
         rootNode = new Node<>(100);
-        for (Integer value : Arrays.asList(50, 150, 20, 60, 145, 160)) {
+        for(Integer value : Arrays.asList(50, 150, 20, 60, 145, 160)) {
             rootNode.insert(new Node<>(value));
         }
-        this.traverser = new PostOrderTraverser<>();
+        this.traverser = new InOrderTraverser<>();
     }
 
     @Test
-    public void testThatNodesAreReturnedInPostOrder() throws Exception {
+    public void testThatNodesAreReturnedInInOrder() throws Exception {
         List<Node<Integer>> returnedNodes = new ArrayList<>();
         this.traverser.traverse(rootNode, visitedNode -> {
             returnedNodes.add(visitedNode);
         });
         String value = getNodeSequenceAsStr(returnedNodes);
 
-        assertEquals("20-60-50-145-160-150-100", value);
+        assertEquals("20-50-60-100-145-150-160", value);
     }
 
     private String getNodeSequenceAsStr(List<Node<Integer>> selectedNodes) {

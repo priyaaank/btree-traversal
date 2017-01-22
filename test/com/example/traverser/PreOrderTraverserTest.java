@@ -1,4 +1,4 @@
-package com.example.domain;
+package com.example.traverser;
 
 import org.junit.Before;
 import org.junit.Test;

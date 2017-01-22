@@ -1,4 +1,4 @@
-package com.example.domain;
+package com.example.traverser;
 
 public class Node<T extends Comparable> implements Comparable<Node<T>> {
 
@@ -38,7 +38,6 @@ public class Node<T extends Comparable> implements Comparable<Node<T>> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public int compareTo(Node<T> o) {
         return (this.data).compareTo(o.data);
     }

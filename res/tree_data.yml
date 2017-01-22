@@ -1,0 +1,11 @@
+---
+value: 100
+children:
+  - value: 50
+    children:
+      - value: 20
+      - value: 60
+  - value: 150
+    children:
+      - value: 145
+      - value: 160

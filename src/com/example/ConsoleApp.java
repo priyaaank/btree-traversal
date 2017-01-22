@@ -1,36 +1,22 @@
 package com.example;
 
-import com.example.builder.ConsoleTreeBuilder;
-import com.example.io.ConsoleInterface;
-import com.example.io.IOInterface;
-import com.example.support.TypeConverter;
+import com.example.builder.YAMLTreeBuilder;
+import com.example.traverser.Node;
+import com.example.traverser.TraverserFactory;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 public class ConsoleApp {
 
-    private IOInterface ioInterface;
-
-    public ConsoleApp(IOInterface ioInterface) {
-        this.ioInterface = ioInterface;
-    }
-
-    public void run() {
-        TypeConverter<Integer> integerTypeConverter = convertToInteger();
-        ConsoleTreeBuilder<Integer> builder = new ConsoleTreeBuilder<>(ioInterface, integerTypeConverter);
-        builder.buildAndTraverse(builder.obtainInput(), builder.selectTraversalType());
-    }
-
-    private TypeConverter<Integer> convertToInteger() {
-        return input -> {
-            try {
-                return Integer.parseInt(input);
-            } catch (NumberFormatException nfe) {
-                return null;
-            }
-        };
-    }
-
     public static void main(String[] args) {
-        new ConsoleApp(new ConsoleInterface()).run();
+        try {
+            Node<Integer> rootNode = null;
+            rootNode = new YAMLTreeBuilder(new FileReader("res/tree_data.yml")).buildTree();
+            TraverserFactory.<Integer>inOrder().traverse(rootNode, visitedNode -> System.out.println(visitedNode.getData()));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }
