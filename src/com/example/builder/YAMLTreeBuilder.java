@@ -19,8 +19,7 @@ public class YAMLTreeBuilder implements TreeBuilder {
     public Node<Integer> buildTree() {
         try {
             YamlReader reader = new YamlReader(fileReader);
-            YAMLNode node = reader.read(YAMLNode.class);
-            return node.asNode();
+            return reader.read(YAMLNode.class).asNode();
         } catch (YamlException e) {
             e.printStackTrace();
         }

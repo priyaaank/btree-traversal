@@ -29,6 +29,11 @@ public class Node<T extends Comparable> implements Comparable<Node<T>> {
         return left;
     }
 
+    @Override
+    public String toString() {
+        return this.data.toString();
+    }
+
     Node<T> getRight() {
         return right;
     }
